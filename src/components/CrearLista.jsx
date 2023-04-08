@@ -1,15 +1,8 @@
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import productsList from "../data/productsList";
 import StyledButton from "./StyledButton";
+import ProductItem from "./ProductItem";
 import theme from "../theme";
-
-const ProductItem = ({ productName }) => {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{productName}</Text>
-    </View>
-  );
-};
 
 const CrearLista = () => {
   return (
@@ -18,7 +11,7 @@ const CrearLista = () => {
         style={styles.productList}
         data={productsList}
         renderItem={(product) => (
-          <ProductItem productName={product.item.fullName} />
+          <ProductItem product={product.item} />
         )}
         keyExtractor={(item) => item.id}
       />
@@ -43,17 +36,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginBottom: 60,
     paddingHorizontal: 20,
-  },
-  item: {
-    backgroundColor: "#FFF",
-    padding: 20,
-    marginHorizontal: 16,
-    borderBottomColor: theme.colors.white,
-    borderStyle: "solid",
-    borderBottomWidth: 2,
-  },
-  title: {
-    fontSize: theme.fontSize.body,
   },
 });
 

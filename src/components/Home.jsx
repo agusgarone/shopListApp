@@ -17,7 +17,7 @@ const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <StyledButton children={"Seleccionar lista"} color={"primary"} />
+        <StyledButton navigation={navigation} to={'SeleccionarLista'} children={"Seleccionar lista"} color={"primary"} />
         <StyledButton navigation={navigation} to={'CrearLista'} children={"Crear lista"} color={"secondary"} />
       </View>
     </View>
