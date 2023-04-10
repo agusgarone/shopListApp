@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import { View, FlatList, Text, StyleSheet, Modal, Button } from "react-native";
+import { View, FlatList, Text, StyleSheet, Button } from "react-native";
 import Lists from "../data/Lists";
 import theme from "../theme";
-
-const ModalContent = ({ closeModal }) => {
-  return (
-    <View>
-      <Text>Este es el contenido del modal</Text>
-      <Button title="Cerrar modal" onPress={closeModal} />
-    </View>
-  );
-};
+import ModalLista from "./ModalLista";
 
 const ListItem = ({ list, setModalVisible }) => {
   return (
@@ -30,13 +22,16 @@ const SeleccionarLista = () => {
 
   return (
     <View style={styles.container}>
-      <Modal visible={modalVisible} animationType="slide" transparent={false}>
-        <ModalContent closeModal={() => setModalVisible(false)} />
-      </Modal>
+      <ModalLista
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
       <FlatList
         style={styles.list}
         data={Lists}
-        renderItem={(list) => <ListItem list={list} setModalVisible={setModalVisible} />}
+        renderItem={(list) => (
+          <ListItem list={list} setModalVisible={setModalVisible} />
+        )}
         keyExtractor={(item) => item.id}
       />
     </View>
