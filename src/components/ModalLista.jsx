@@ -8,7 +8,7 @@ const ModalContent = ({ closeModal }) => {
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
         <View style={styles.modalContent}>
-          <Text>{Lists[0].name}</Text>
+          <Text style={styles.title}>{Lists[0].name}</Text>
           <Text>{`Creada el ${Lists[0].created}`}</Text>
           <FlatList
             style={styles.list}
@@ -27,13 +27,13 @@ const ModalContent = ({ closeModal }) => {
   );
 };
 
-const ProductItem = ({product}) => {
-    return (
-      <View style={styles.item}>
-        <Text style={styles.title}>{product.item.name}</Text>
-      </View>
-    );
-  };
+const ProductItem = ({ product }) => {
+  return (
+    <View style={styles.item}>
+      <Text style={styles.titleProduct}>{product.item.name}</Text>
+    </View>
+  );
+};
 
 const ModalLista = ({ modalVisible, setModalVisible }) => {
   return (
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalView: {
+    width: 300,
     margin: 10,
     backgroundColor: "white",
     borderRadius: 10,
@@ -67,6 +68,10 @@ const styles = StyleSheet.create({
   modalContent: {
     justifyContent: "flex-start",
   },
+  title: {
+    fontSize: theme.fontSize.subHeading,
+    fontWeight: theme.fontWeights.bold,
+  },
   list: {
     height: 300,
     flexGrow: 0,
@@ -78,11 +83,11 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.white,
     borderStyle: "solid",
     borderBottomWidth: 2,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center'
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
-  title: {
+  titleProduct: {
     fontSize: theme.fontSize.body,
   },
 });

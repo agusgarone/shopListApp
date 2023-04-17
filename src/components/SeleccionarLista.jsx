@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import { View, FlatList, Text, StyleSheet, Button } from "react-native";
+import {
+  View,
+  FlatList,
+  Text,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import Lists from "../data/Lists";
 import theme from "../theme";
 import ModalLista from "./ModalLista";
 
+const Item = ({ list, onPress }) => (
+  <TouchableOpacity style={styles.item} onPress={onPress}>
+    <Text style={styles.title}>{list?.item?.name}</Text>
+    <Text
+      style={styles.subText}
+    >{`${list?.item?.products?.length} productos`}</Text>
+    <Text style={styles.subText}>{list?.item?.created}</Text>
+  </TouchableOpacity>
+);
+
 const ListItem = ({ list, setModalVisible }) => {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{list?.item?.name}</Text>
-      <Text
-        style={styles.subText}
-      >{`${list?.item?.products?.length} productos`}</Text>
-      <Text style={styles.subText}>{list?.item?.created}</Text>
-      <Button title="Abrir modal" onPress={() => setModalVisible(true)} />
-    </View>
-  );
+  return <Item list={list} onPress={() => setModalVisible(true)} />;
 };
 
 const SeleccionarLista = () => {
