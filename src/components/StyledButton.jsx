@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontWeight: theme.fontWeights.normal,
     fontSize: theme.fontSize.body,
-    // fontFamily: theme.fonts.main,
   },
   bgColorPrimary: {
     backgroundColor: theme.colors.primary,
@@ -19,10 +18,8 @@ const styles = StyleSheet.create({
   bgColorSecondary: {
     backgroundColor: theme.colors.white,
     color: theme.colors.primary,
-  },
-  delete: {
-    backgroundColor: "red",
-    color: theme.colors.white,
+    borderColor: theme.colors.primary,
+    borderWidth: 2,
   },
   bold: {
     fontWeight: theme.fontWeights.bold,
@@ -31,11 +28,11 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.subHeading,
   },
   textColorPrimary: {
-    color: theme.colors.white
+    color: theme.colors.white,
   },
   textColorSecondary: {
-    color: theme.colors.primary
-  }
+    color: theme.colors.primary,
+  },
 });
 
 export default function StyledButton({
@@ -51,7 +48,6 @@ export default function StyledButton({
     styles.button,
     color === "primary" && styles.bgColorPrimary,
     color === "secondary" && styles.bgColorSecondary,
-    color === "delete" && styles.delete,
     fontWeight === "subHeading" && styles.subHeading,
     style,
   ];
@@ -59,11 +55,14 @@ export default function StyledButton({
   const textButtonStyle = [
     color === "primary" && styles.textColorPrimary,
     color === "secondary" && styles.textColorSecondary,
-    color === "delete" && styles.textColorPrimary
-  ]
+  ];
 
   return (
-    <TouchableOpacity onPress={() => navigation ? navigation.navigate(to) : null } style={buttonStyles} {...restOfProps}>
+    <TouchableOpacity
+      onPress={() => (navigation ? navigation.navigate(to) : null)}
+      style={buttonStyles}
+      {...restOfProps}
+    >
       <Text style={textButtonStyle}>{children}</Text>
     </TouchableOpacity>
   );

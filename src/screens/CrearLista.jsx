@@ -1,18 +1,17 @@
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, ScrollView } from "react-native";
 import productsList from "../data/productsList";
-import StyledButton from "./StyledButton";
-import ProductItem from "./ProductItem";
-import theme from "../theme";
+import StyledButton from "../components/StyledButton";
+import ProductItem from "../components/ProductItem";
 import { useState } from "react";
-import ModalSeleccionarProducto from "./ModalSeleccionarProducto";
+import ModalSeleccionarProducto from "../components/ModalSeleccionarProducto";
 
 const CrearLista = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
       <ModalSeleccionarProducto
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
+        show={modalVisible}
+        onDismiss={() => setModalVisible(false)}
       />
       <FlatList
         style={styles.productList}
@@ -39,11 +38,11 @@ const styles = StyleSheet.create({
     marginTop: 26,
   },
   productList: {
-    height: 500,
+    height: 520,
     flexGrow: 0,
   },
   buttonContainer: {
-    marginBottom: 60,
+    marginBottom: 20,
     paddingHorizontal: 20,
   },
 });

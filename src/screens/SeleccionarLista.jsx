@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Lists from "../data/Lists";
 import theme from "../theme";
-import ModalLista from "./ModalLista";
+import ModalLista from "../components/ModalLista";
 
 const Item = ({ list, onPress }) => (
   <TouchableOpacity style={styles.item} onPress={onPress}>
