@@ -4,7 +4,6 @@ import {
   FlatList,
   Text,
   StyleSheet,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import Lists from "../data/Lists";
@@ -35,6 +34,7 @@ const SeleccionarLista = () => {
         setModalVisible={setModalVisible}
       />
       <FlatList
+        overScrollMode="never"
         style={styles.list}
         data={Lists}
         renderItem={(list) => (

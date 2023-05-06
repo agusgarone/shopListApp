@@ -1,11 +1,11 @@
-import { View, FlatList, StyleSheet, ScrollView } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import productsList from "../data/productsList";
 import StyledButton from "../components/StyledButton";
 import ProductItem from "../components/ProductItem";
 import { useState } from "react";
 import ModalSeleccionarProducto from "../components/ModalSeleccionarProducto";
 
-const CrearLista = () => {
+const CrearLista = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
@@ -14,6 +14,7 @@ const CrearLista = () => {
         onDismiss={() => setModalVisible(false)}
       />
       <FlatList
+        overScrollMode="never"
         style={styles.productList}
         data={productsList}
         renderItem={(product) => <ProductItem product={product.item} />}
@@ -25,7 +26,12 @@ const CrearLista = () => {
           color={"primary"}
           onPress={() => setModalVisible(true)}
         />
-        <StyledButton children={"Aceptar"} color={"secondary"} />
+        <StyledButton
+          children={"Aceptar"}
+          color={"secondary"}
+          navigation={navigation}
+          to={"CheckList"}
+        />
       </View>
     </View>
   );

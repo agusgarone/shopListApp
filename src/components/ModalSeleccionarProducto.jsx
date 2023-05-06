@@ -6,18 +6,14 @@ import {
   Animated,
   Dimensions,
   ScrollView,
+  TouchableWithoutFeedback,
 } from "react-native";
-import StyledButton from "./StyledButton";
-import {
-  GestureEvent,
-  PanGestureHandler,
-  PanGestureHandlerEventPayload,
-} from "react-native-gesture-handler";
+import { PanGestureHandler } from "react-native-gesture-handler";
 import Input from "./StyledInput";
 import theme from "../theme";
 
 const ModalSeleccionarProducto = ({ show, onDismiss }) => {
-  const bottomSheetHeight = Dimensions.get("window").height * 0.65;
+  const bottomSheetHeight = Dimensions.get("window").height * 0.92;
   const [open, setOpen] = useState(show);
   const bottom = useRef(new Animated.Value(-bottomSheetHeight)).current;
 
@@ -47,7 +43,7 @@ const ModalSeleccionarProducto = ({ show, onDismiss }) => {
   };
 
   const onGestureEnd = (event) => {
-    if (event?.nativeEvent?.translationY > bottomSheetHeight / 2) {
+    if (event?.nativeEvent?.translationY > bottomSheetHeight / 3) {
       onDismiss();
     } else {
       bottom.setValue(0);
@@ -61,13 +57,26 @@ const ModalSeleccionarProducto = ({ show, onDismiss }) => {
     <Animated.View
       style={[styles.container, { height: bottomSheetHeight, bottom: bottom }]}
     >
-      <PanGestureHandler onGestureEvent={onGesture} onEnded={onGestureEnd}>
-        <Text style={styles.title}>Elegir producto</Text>
-      </PanGestureHandler>
-      <View style={styles.modalContent}>
-        <View style={styles.centeredView}>
-          <Input label={"Nombre"} placeholder={"Ingrese el nombre"} />
-          <ScrollView style={styles.scrollView}></ScrollView>
+      <TouchableWithoutFeedback onPress={() => onDismiss()}>
+        <View
+          style={{
+            height: Dimensions.get("window").height * 0.27,
+            width: "100%",
+          }}
+        ></View>
+      </TouchableWithoutFeedback>
+      <View style={styles.modal}>
+        <PanGestureHandler onGestureEvent={onGesture} onEnded={onGestureEnd}>
+          <Text style={styles.title}>Elegir producto</Text>
+        </PanGestureHandler>
+        <View style={styles.modalContent}>
+          <View style={styles.centeredView}>
+            <Input label={"Nombre"} placeholder={"Ingrese el nombre"} />
+            <ScrollView
+              overScrollMode="never"
+              style={styles.scrollView}
+            ></ScrollView>
+          </View>
         </View>
       </View>
     </Animated.View>
@@ -80,6 +89,11 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 100,
+    justifyContent: "flex-end",
+  },
+  modal: {
+    height: Dimensions.get("window").height * 0.65,
+    width: "100%",
     backgroundColor: theme.colors.darkWhite,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,

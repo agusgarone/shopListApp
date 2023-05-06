@@ -39,6 +39,7 @@ const Input = ({ label, placeholder, style, error, value, onChangeText }) => {
 
   return (
     <ScrollView
+      overScrollMode="never"
       contentContainerStyle={styles.scrollView}
       keyboardShouldPersistTaps="handled"
     >

@@ -4,7 +4,6 @@ import StyledButton from "../components/StyledButton.jsx";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
     justifyContent: "flex-end",
   },
   buttonContainer: {

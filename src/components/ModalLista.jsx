@@ -1,4 +1,5 @@
-import { View, Text, FlatList, Modal, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import Modal from "react-native-modal";
 import StyledButton from "./StyledButton";
 import Lists from "../data/Lists";
 import theme from "../theme";
@@ -11,6 +12,7 @@ const ModalContent = ({ closeModal }) => {
           <Text style={styles.title}>{Lists[0].name}</Text>
           <Text>{`Creada el ${Lists[0].created}`}</Text>
           <FlatList
+            overScrollMode="never"
             style={styles.list}
             data={Lists[0].products}
             renderItem={(product) => <ProductItem product={product} />}
@@ -37,7 +39,13 @@ const ProductItem = ({ product }) => {
 
 const ModalLista = ({ modalVisible, setModalVisible }) => {
   return (
-    <Modal visible={modalVisible} animationType="slide" transparent={true}>
+    <Modal
+      isVisible={modalVisible}
+      animationIn={"slideInUp"}
+      animationInTiming={800}
+      animationOut={"slideOutDown"}
+      animationOutTiming={800}
+    >
       <ModalContent closeModal={() => setModalVisible(false)} />
     </Modal>
   );

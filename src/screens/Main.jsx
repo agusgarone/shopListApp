@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./Home.jsx";
 import CrearLista from "./CrearLista.jsx";
 import SeleccionarLista from "./SeleccionarLista.jsx";
+import CheckList from "./checkList.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ const Main = () => {
         name="SeleccionarLista"
         component={SeleccionarLista}
         options={{ title: "Seleccionar lista" }}
+      />
+      <Stack.Screen
+        name="CheckList"
+        component={CheckList}
+        options={{ title: "Check List" }}
       />
     </Stack.Navigator>
   );
