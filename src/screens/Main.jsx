@@ -1,9 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "./Home.jsx";
+// import HeaderNavigationDrawer from "../navigation/HeaderNavigationDrawer";
 import CrearLista from "./CrearLista.jsx";
 import SeleccionarLista from "./SeleccionarLista.jsx";
 import CheckList from "./checkList.jsx";
+import Home from "./Home";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,8 +14,13 @@ const Main = () => {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{ title: "Inicio" }}
+        options={{ title: "Inicio", headerShown: false }}
       />
+      {/* <Stack.Screen
+        name="Root"
+        component={Root}
+        options={{ headerShown: false }}
+      /> */}
       <Stack.Screen
         name="CrearLista"
         component={CrearLista}

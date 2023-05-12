@@ -1,10 +1,11 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import StyledButton from "../components/StyledButton.jsx";
+import Header from "../components/Header.jsx";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
   },
   buttonContainer: {
     marginBottom: 60,
@@ -13,8 +14,13 @@ const styles = StyleSheet.create({
 });
 
 const Home = ({ navigation }) => {
+  const openDrawer = () => {
+    navigation.openDrawer();
+  };
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <Header openDrawer={openDrawer} />
       <View style={styles.buttonContainer}>
         <StyledButton
           navigation={navigation}
@@ -29,7 +35,7 @@ const Home = ({ navigation }) => {
           color={"secondary"}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
