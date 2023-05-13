@@ -12,8 +12,8 @@ const theme = {
     heading: 22,
   },
   fontWeights: {
-    normal: 400,
-    bold: 700,
+    normal: "400",
+    bold: "700",
   },
   fonts: {
     main: "montserrat",

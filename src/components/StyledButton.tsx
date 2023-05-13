@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     marginVertical: 10,
-    fontWeight: theme.fontWeights.normal,
+    fontWeight: theme.fontWeights.normal as any,
     fontSize: theme.fontSize.body,
   },
   bgColorPrimary: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   bold: {
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: theme.fontWeights.bold as any,
   },
   subHeading: {
     fontSize: theme.fontSize.subHeading,
@@ -42,8 +42,17 @@ export default function StyledButton({
   style,
   navigation,
   to,
-  ...restOfProps
+  onPress,
+}: {
+  fontWeight?: string;
+  children?: string;
+  color?: string;
+  style?: any;
+  navigation?: any;
+  to?: string;
+  onPress?: () => void;
 }) {
+  console.log("navigation", navigation);
   const buttonStyles = [
     styles.button,
     color === "primary" && styles.bgColorPrimary,
@@ -59,9 +68,9 @@ export default function StyledButton({
 
   return (
     <TouchableOpacity
-      onPress={() => (navigation ? navigation.navigate(to) : null)}
+      // onPress={navigation?.navigate(to)}
       style={buttonStyles}
-      {...restOfProps}
+      // {...onPress}
     >
       <Text style={textButtonStyle}>{children}</Text>
     </TouchableOpacity>

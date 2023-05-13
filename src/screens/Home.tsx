@@ -1,6 +1,9 @@
 import { View, StyleSheet, SafeAreaView } from "react-native";
-import StyledButton from "../components/StyledButton.jsx";
-import Header from "../components/Header.jsx";
+import StyledButton from "../components/StyledButton";
+import Header from "../components/Header";
+import { useEffect } from "react";
+import StackNavigation from "../navigation/StackNavigation";
+import { DrawerProps, StackProps } from "../types";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,9 +16,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const Home = ({ navigation }) => {
+const buttonComponent = (props) => <StyledButton {...props} />;
+
+const Home = ({
+  StackNavigation,
+  DrawerNavigation,
+}: {
+  StackNavigation: StackProps;
+  DrawerNavigation: DrawerProps;
+}) => {
   const openDrawer = () => {
-    navigation.openDrawer();
+    DrawerNavigation.navigation.openDrawer();
+  };
+
+  const props = {
+    // navigation: StackNavigation.navigation,
+    to: "SeleccionarLista",
+    children: "Seleccionar lista",
+    color: "primary",
   };
 
   return (
@@ -23,13 +41,13 @@ const Home = ({ navigation }) => {
       <Header openDrawer={openDrawer} />
       <View style={styles.buttonContainer}>
         <StyledButton
-          navigation={navigation}
+          navigation={StackNavigation}
           to={"SeleccionarLista"}
           children={"Seleccionar lista"}
           color={"primary"}
         />
         <StyledButton
-          navigation={navigation}
+          navigation={StackNavigation}
           to={"CrearLista"}
           children={"Crear lista"}
           color={"secondary"}

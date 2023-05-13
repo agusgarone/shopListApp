@@ -2,11 +2,12 @@ import React from "react";
 import { View, StyleSheet, TouchableHighlight, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import theme from "../theme";
+import { DrawerProps } from "../types";
 
-const Header = ({ openDrawer }) => {
+const Header = ({ openDrawer }: any) => {
   return (
     <View style={styles.body}>
-      <TouchableHighlight style={styles.imgContent}>
+      <TouchableHighlight style={styles.imgContent} onPress={openDrawer}>
         <Ionicons name="md-menu" size={32} color="white" />
       </TouchableHighlight>
       <View>
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: theme.fontSize.heading,
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: theme.fontWeights.bold as any,
     color: theme.colors.white,
   },
 });

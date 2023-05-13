@@ -1,26 +1,23 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import HeaderNavigationDrawer from "../navigation/HeaderNavigationDrawer";
-import CrearLista from "./CrearLista.jsx";
-import SeleccionarLista from "./SeleccionarLista.jsx";
-import CheckList from "./checkList.jsx";
-import Home from "./Home";
+import CrearLista from "../screens/CrearLista";
+import SeleccionarLista from "../screens/SeleccionarLista";
+import CheckList from "../screens/CheckList";
+import Home from "../screens/Home";
+import { DrawerProps } from "../types";
 
 const Stack = createNativeStackNavigator();
 
-const Main = () => {
+const StackNavigation = (navigation: DrawerProps) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
-        component={Home}
+        component={(props) =>
+          Home({ StackNavigation: props, DrawerNavigation: navigation })
+        }
         options={{ title: "Inicio", headerShown: false }}
       />
-      {/* <Stack.Screen
-        name="Root"
-        component={Root}
-        options={{ headerShown: false }}
-      /> */}
       <Stack.Screen
         name="CrearLista"
         component={CrearLista}
@@ -40,4 +37,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default StackNavigation;
