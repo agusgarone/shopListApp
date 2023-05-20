@@ -9,13 +9,15 @@ import { DrawerProps } from "../types";
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = (navigation: DrawerProps) => {
+  const HomeComponent = (props) => (
+    <Home DrawerNavigation={navigation} StackNavigation={props} />
+  );
+
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
-        component={(props) =>
-          Home({ StackNavigation: props, DrawerNavigation: navigation })
-        }
+        component={HomeComponent}
         options={{ title: "Inicio", headerShown: false }}
       />
       <Stack.Screen

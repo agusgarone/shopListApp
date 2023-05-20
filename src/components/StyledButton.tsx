@@ -1,5 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import theme from "../theme";
+import { StackProps } from "../types";
+import { useState } from "react";
 
 const styles = StyleSheet.create({
   button: {
@@ -35,6 +37,12 @@ const styles = StyleSheet.create({
   },
 });
 
+const handlePress = (navigation: StackProps, to) => {
+  if (navigation && to) {
+    return navigation.navigation.navigate(to);
+  }
+};
+
 export default function StyledButton({
   fontWeight,
   children,
@@ -42,17 +50,14 @@ export default function StyledButton({
   style,
   navigation,
   to,
-  onPress,
 }: {
   fontWeight?: string;
   children?: string;
   color?: string;
   style?: any;
-  navigation?: any;
+  navigation?: StackProps;
   to?: string;
-  onPress?: () => void;
 }) {
-  console.log("navigation", navigation);
   const buttonStyles = [
     styles.button,
     color === "primary" && styles.bgColorPrimary,
@@ -68,9 +73,8 @@ export default function StyledButton({
 
   return (
     <TouchableOpacity
-      // onPress={navigation?.navigate(to)}
       style={buttonStyles}
-      // {...onPress}
+      onPress={() => handlePress(navigation, to)}
     >
       <Text style={textButtonStyle}>{children}</Text>
     </TouchableOpacity>

@@ -19,11 +19,7 @@ const ModalContent = ({ closeModal }) => {
             keyExtractor={(item) => item.name}
           />
         </View>
-        <StyledButton
-          children={"Aceptar"}
-          color={"primary"}
-          onPress={closeModal}
-        />
+        <StyledButton children={"Aceptar"} color={"primary"} />
       </View>
     </View>
   );
@@ -78,7 +74,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: theme.fontSize.subHeading,
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: theme.fontWeights.bold as any,
   },
   list: {
     height: 300,

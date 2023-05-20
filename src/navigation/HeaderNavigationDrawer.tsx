@@ -18,7 +18,7 @@ const HeaderComponent = (props: DrawerContentComponentProps) => {
 const HeaderNavigationDrawer = () => {
   return (
     <Drawer.Navigator
-      initialRouteName="Stack"
+      initialRouteName="Dashboard"
       screenOptions={{
         headerShown: false,
         drawerStyle: {
@@ -31,8 +31,8 @@ const HeaderNavigationDrawer = () => {
       }}
       drawerContent={(props) => HeaderComponent(props)}
     >
-      <Drawer.Screen name="Stack" component={StackNavigation} />
-      <Drawer.Screen name="Notifications" component={Products} />
+      <Drawer.Screen name="Dashboard" component={StackNavigation} />
+      <Drawer.Screen name="Products" component={Products} />
     </Drawer.Navigator>
   );
 };

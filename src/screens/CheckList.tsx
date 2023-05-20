@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { View } from "react-native";
 import StyledButton from "../components/StyledButton";
 import theme from "../theme";
@@ -6,19 +6,13 @@ import theme from "../theme";
 const CheckList = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      {/* <Text>hola</Text> */}
       <View style={styles.lista}>
         <ScrollView
           overScrollMode="never"
           style={styles.scrollView}
         ></ScrollView>
       </View>
-      <StyledButton
-        children={"Listo"}
-        color={"primary"}
-        navigation={navigation}
-        to={"Home"}
-      />
+      <StyledButton children={"Listo"} color={"primary"} />
     </View>
   );
 };

@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet } from "react-native";
-import StyledButton from "./StyledButton";
 import theme from "../theme";
 
 const ProductItem = ({ product }) => {

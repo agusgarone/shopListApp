@@ -21,17 +21,8 @@ const CrearLista = ({ navigation }) => {
         keyExtractor={(item) => item.id}
       />
       <View style={styles.buttonContainer}>
-        <StyledButton
-          children={"Agregar"}
-          color={"primary"}
-          onPress={() => setModalVisible(true)}
-        />
-        <StyledButton
-          children={"Aceptar"}
-          color={"secondary"}
-          navigation={navigation}
-          to={"CheckList"}
-        />
+        <StyledButton children={"Agregar"} color={"primary"} />
+        <StyledButton children={"Aceptar"} color={"secondary"} />
       </View>
     </View>
   );
