@@ -11,7 +11,7 @@ const HeaderDrawer = (props) => {
     <View style={styles.body}>
       <DrawerContentScrollView {...props}>
         <View style={styles.header}>
-          <Text>Holaa</Text>
+          <Text style={styles.textHeader}>ShopListApp</Text>
         </View>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
@@ -22,29 +22,19 @@ const HeaderDrawer = (props) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
+    backgroundColor: theme.colors.white,
   },
   header: {
     flex: 1,
-    height: 64,
+    height: 48,
+    paddingLeft: 10,
     justifyContent: "center",
     borderBottomWidth: 1,
-    borderBottomColor: "#6F6F6F",
+    borderBottomColor: theme.colors.tertiary,
   },
-  headerImage: {
-    height: 17,
-    width: 115,
-    marginLeft: 22,
-  },
-  textContainer: {
-    justifyContent: "center",
-    marginLeft: 18,
-    marginTop: 15,
-  },
-  textContent: {
-    color: "rgba(255, 255, 255, 0.9)",
-    // fontFamily: theme.font.principalMedium,
-    fontSize: theme.fontSize.body,
-    lineHeight: 16,
+  textHeader: {
+    fontSize: theme.fontSize.subHeading,
+    fontWeight: theme.fontWeights.bold as any,
   },
 });
 export default HeaderDrawer;

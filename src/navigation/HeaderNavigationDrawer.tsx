@@ -27,6 +27,7 @@ const HeaderNavigationDrawer = () => {
         },
         drawerItemStyle: styles.itemContent,
         drawerLabelStyle: styles.textContent,
+        drawerActiveBackgroundColor: theme.colors.primary,
       }}
       drawerContent={(props) => HeaderComponent(props)}
     >
@@ -42,8 +43,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   textContent: {
-    color: "rgba(255, 255, 255, 0.9)",
-    // fontFamily: theme.font.principalMedium,
+    color: theme.colors.tertiary,
     fontSize: theme.fontSize.body,
     lineHeight: 16,
   },
