@@ -34,12 +34,14 @@ const Home = ({
           to="SeleccionarLista"
           children={"Seleccionar lista"}
           color={"primary"}
+          type="Navigate"
         />
         <StyledButton
           navigation={StackNavigation}
           to="CrearLista"
           children={"Crear lista"}
           color={"secondary"}
+          type="Navigate"
         />
       </View>
     </SafeAreaView>

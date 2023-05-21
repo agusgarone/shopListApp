@@ -4,8 +4,9 @@ import StyledButton from "../components/StyledButton";
 import ProductItem from "../components/ProductItem";
 import { useState } from "react";
 import ModalSeleccionarProducto from "../components/ModalSeleccionarProducto";
+import { StackProps } from "../types";
 
-const CrearLista = ({ navigation }) => {
+const CrearLista = (navigation: StackProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
@@ -21,8 +22,19 @@ const CrearLista = ({ navigation }) => {
         keyExtractor={(item) => item.id}
       />
       <View style={styles.buttonContainer}>
-        <StyledButton children={"Agregar"} color={"primary"} />
-        <StyledButton children={"Aceptar"} color={"secondary"} />
+        <StyledButton
+          children={"Agregar"}
+          color={"primary"}
+          type="action"
+          action={() => setModalVisible(true)}
+        />
+        <StyledButton
+          children={"Aceptar"}
+          color={"secondary"}
+          type="Navigate"
+          navigation={navigation}
+          to="CheckList"
+        />
       </View>
     </View>
   );

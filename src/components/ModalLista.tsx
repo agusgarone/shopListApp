@@ -19,7 +19,12 @@ const ModalContent = ({ closeModal }) => {
             keyExtractor={(item) => item.name}
           />
         </View>
-        <StyledButton children={"Aceptar"} color={"primary"} />
+        <StyledButton
+          children={"Aceptar"}
+          color={"primary"}
+          type="action"
+          action={closeModal}
+        />
       </View>
     </View>
   );

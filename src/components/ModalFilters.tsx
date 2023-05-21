@@ -83,7 +83,12 @@ const ModalFilters = ({ show, onDismiss }) => {
             />
           </View>
           <View style={styles.buttons}>
-            <StyledButton children={"Aceptar"} color={"primary"} />
+            <StyledButton
+              children={"Aceptar"}
+              color={"primary"}
+              type="action"
+              action={onDismiss}
+            />
           </View>
         </View>
       </View>

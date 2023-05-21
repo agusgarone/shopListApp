@@ -37,26 +37,30 @@ const styles = StyleSheet.create({
   },
 });
 
-const handlePress = (navigation: StackProps, to) => {
+const handlePress = (navigation: any, to) => {
   if (navigation && to) {
-    return navigation.navigation.navigate(to);
+    return navigation?.navigation?.navigate(to);
   }
 };
 
 export default function StyledButton({
   fontWeight,
+  type,
   children,
   color,
   style,
   navigation,
   to,
+  action,
 }: {
   fontWeight?: string;
-  children?: string;
-  color?: string;
+  type: string;
+  children: string;
+  color: string;
   style?: any;
-  navigation?: StackProps;
+  navigation?: any;
   to?: string;
+  action?: () => void;
 }) {
   const buttonStyles = [
     styles.button,
@@ -74,7 +78,13 @@ export default function StyledButton({
   return (
     <TouchableOpacity
       style={buttonStyles}
-      onPress={() => handlePress(navigation, to)}
+      onPress={() => {
+        if (type === "Navigate") {
+          return handlePress(navigation, to);
+        } else {
+          action();
+        }
+      }}
     >
       <Text style={textButtonStyle}>{children}</Text>
     </TouchableOpacity>

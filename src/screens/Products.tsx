@@ -43,8 +43,20 @@ const Products = (navigation: DrawerProps) => {
           </View>
         </View>
         <View style={styles.buttons}>
-          <StyledButton children={"Crear producto"} color={"primary"} />
-          <StyledButton children={"Listo"} color={"secondary"} />
+          <StyledButton
+            children={"Crear producto"}
+            color={"primary"}
+            type="Navigate"
+            navigation={navigation}
+            to="CreateProduct"
+          />
+          <StyledButton
+            children={"Listo"}
+            color={"secondary"}
+            type="Navigate"
+            navigation={navigation}
+            to="Home"
+          />
         </View>
       </View>
     </SafeAreaView>
