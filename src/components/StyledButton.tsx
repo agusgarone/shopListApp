@@ -1,7 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import theme from "../theme";
-import { StackProps } from "../types";
-import { useState } from "react";
 
 const styles = StyleSheet.create({
   button: {
@@ -54,9 +52,9 @@ export default function StyledButton({
   action,
 }: {
   fontWeight?: string;
-  type: string;
+  type: "Navigate" | "Action";
   children: string;
-  color: string;
+  color: "primary" | "secondary";
   style?: any;
   navigation?: any;
   to?: string;

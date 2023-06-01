@@ -2,7 +2,21 @@ import { useState } from "react";
 import theme from "../theme";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
-const Input = ({ label, placeholder, style, error, value, onChangeText }) => {
+const Input = ({
+  label,
+  placeholder,
+  style,
+  error,
+  value,
+  onChangeText,
+}: {
+  label: string;
+  placeholder: string;
+  style: any;
+  error: any;
+  value: any;
+  onChangeText: any;
+}) => {
   const [focus, setFocus] = useState(false);
 
   const styles = StyleSheet.create({
@@ -28,7 +42,6 @@ const Input = ({ label, placeholder, style, error, value, onChangeText }) => {
     },
     input: {
       flex: 1,
-      color: theme.colors.white,
     },
     error: {
       borderColor: "red",

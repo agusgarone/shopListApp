@@ -9,8 +9,8 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
-import Input from "./StyledInput";
 import theme from "../theme";
+import FormSelectProduct from "./forms/FormSelectProduct";
 
 const ModalSeleccionarProducto = ({ show, onDismiss }) => {
   const bottomSheetHeight = Dimensions.get("window").height * 0.92;
@@ -71,7 +71,7 @@ const ModalSeleccionarProducto = ({ show, onDismiss }) => {
         </PanGestureHandler>
         <View style={styles.modalContent}>
           <View style={styles.centeredView}>
-            <Input label={"Nombre"} placeholder={"Ingrese el nombre"} />
+            <FormSelectProduct />
             <ScrollView
               overScrollMode="never"
               style={styles.scrollView}

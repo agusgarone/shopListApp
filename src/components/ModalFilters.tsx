@@ -12,6 +12,7 @@ import { PanGestureHandler } from "react-native-gesture-handler";
 import Input from "./StyledInput";
 import theme from "../theme";
 import StyledButton from "./StyledButton";
+import FormFilterProducts from "./forms/FormFilterProducts";
 
 const ModalFilters = ({ show, onDismiss }) => {
   const bottomSheetHeight = Dimensions.get("window").height * 0.92;
@@ -71,25 +72,7 @@ const ModalFilters = ({ show, onDismiss }) => {
           <Text style={styles.title}>Filtros</Text>
         </PanGestureHandler>
         <View style={styles.modalContent}>
-          <View style={styles.fields}>
-            <Input
-              label={"Nombre del producto"}
-              placeholder={"Ingrese el nombre"}
-            />
-            <Input label={"Categorias"} placeholder={"Ingrese categorias"} />
-            <Input
-              label={"Por listas creadas"}
-              placeholder={"Ingrese listas"}
-            />
-          </View>
-          <View style={styles.buttons}>
-            <StyledButton
-              children={"Aceptar"}
-              color={"primary"}
-              type="action"
-              action={onDismiss}
-            />
-          </View>
+          <FormFilterProducts onDismiss={onDismiss} />
         </View>
       </View>
     </Animated.View>
