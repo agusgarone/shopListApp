@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CrearLista from "../screens/CrearLista";
-import SeleccionarLista from "../screens/SeleccionarLista";
+import CreateList from "../screens/CreateList";
+import SelectList from "../screens/SelectList";
 import CheckList from "../screens/CheckList";
 import Home from "../screens/Home";
 import { DrawerProps } from "../types";
@@ -21,13 +21,13 @@ const StackNavigation = (navigation: DrawerProps) => {
         options={{ title: "Inicio", headerShown: false }}
       />
       <Stack.Screen
-        name="CrearLista"
-        component={CrearLista}
+        name="CreateList"
+        component={CreateList}
         options={{ title: "Crear lista" }}
       />
       <Stack.Screen
-        name="SeleccionarLista"
-        component={SeleccionarLista}
+        name="SelectList"
+        component={SelectList}
         options={{ title: "Seleccionar lista" }}
       />
       <Stack.Screen

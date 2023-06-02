@@ -5,13 +5,10 @@ import {
   StyleSheet,
   Animated,
   Dimensions,
-  ScrollView,
   TouchableWithoutFeedback,
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
-import Input from "./StyledInput";
 import theme from "../theme";
-import StyledButton from "./StyledButton";
 import FormFilterProducts from "./forms/FormFilterProducts";
 
 const ModalFilters = ({ show, onDismiss }) => {

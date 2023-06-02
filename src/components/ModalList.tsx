@@ -22,7 +22,7 @@ const ModalContent = ({ closeModal }) => {
         <StyledButton
           children={"Aceptar"}
           color={"primary"}
-          type="action"
+          type="Action"
           action={closeModal}
         />
       </View>

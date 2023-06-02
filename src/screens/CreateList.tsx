@@ -3,7 +3,7 @@ import productsList from "../data/productsList";
 import StyledButton from "../components/StyledButton";
 import ProductItem from "../components/ProductItem";
 import { useState } from "react";
-import ModalSeleccionarProducto from "../components/ModalSeleccionarProducto";
+import ModalSeleccionarProducto from "../components/ModalSelectProduct";
 import { StackProps } from "../types";
 
 const CrearLista = (navigation: StackProps) => {
@@ -25,7 +25,7 @@ const CrearLista = (navigation: StackProps) => {
         <StyledButton
           children={"Agregar"}
           color={"primary"}
-          type="action"
+          type="Action"
           action={() => setModalVisible(true)}
         />
         <StyledButton

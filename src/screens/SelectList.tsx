@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Lists from "../data/Lists";
 import theme from "../theme";
-import ModalLista from "../components/ModalLista";
+import ModalLista from "../components/ModalList";
 
 const Item = ({ list, onPress }) => (
   <TouchableOpacity style={styles.item} onPress={onPress}>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: theme.fontSize.heading,
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: theme.fontWeights.bold as any,
   },
   subText: {
     fontSize: theme.fontSize.body,

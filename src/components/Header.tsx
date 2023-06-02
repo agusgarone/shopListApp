@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, TouchableHighlight, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import theme from "../theme";
-import { DrawerProps } from "../types";
 
 const Header = ({ openDrawer }: any) => {
   return (
