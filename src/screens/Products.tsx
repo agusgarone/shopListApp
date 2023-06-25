@@ -3,7 +3,7 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  ScrollView,
+  FlatList,
   TouchableOpacity,
 } from "react-native";
 import { DrawerProps } from "../types";
@@ -11,13 +11,38 @@ import Header from "../components/Header";
 import StyledButton from "../components/StyledButton";
 import theme from "../theme";
 import ModalFilters from "../components/ModalFilters";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as SQLite from "expo-sqlite";
 
-const Products = (navigation: DrawerProps) => {
+interface IProducts {
+  navigation: DrawerProps;
+  db: SQLite.WebSQLDatabase;
+}
+
+const Products = ({ navigation, db }: IProducts) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [products, setProducts] = useState([]);
   const openDrawer = () => {
     navigation.navigation.openDrawer();
   };
+
+  useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM categorias",
+        null,
+        (txObj, resultSet) => {
+          console.log("GET success", resultSet.rows._array);
+          setProducts(resultSet.rows._array);
+        },
+        (txObj, error) => {
+          console.log("error", error);
+          return true;
+        }
+      );
+    });
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ModalFilters
@@ -36,10 +61,18 @@ const Products = (navigation: DrawerProps) => {
             </TouchableOpacity>
           </View>
           <View style={styles.list}>
-            <ScrollView
+            <FlatList
+              data={products}
+              renderItem={({ item }) => {
+                return (
+                  <View>
+                    <Text>{item.name}</Text>
+                  </View>
+                );
+              }}
               overScrollMode="never"
               style={styles.scrollView}
-            ></ScrollView>
+            />
           </View>
         </View>
         <View style={styles.buttons}>

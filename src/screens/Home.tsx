@@ -31,14 +31,14 @@ const Home = ({
       <View style={styles.buttonContainer}>
         <StyledButton
           navigation={StackNavigation}
-          to="SeleccionarLista"
+          to="SelectList"
           children={"Seleccionar lista"}
           color={"primary"}
           type="Navigate"
         />
         <StyledButton
           navigation={StackNavigation}
-          to="CrearLista"
+          to="CreateList"
           children={"Crear lista"}
           color={"secondary"}
           type="Navigate"

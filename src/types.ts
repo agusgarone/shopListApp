@@ -3,9 +3,11 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 
 export type StackParamList = {
   Home?: undefined;
-  CrearLista?: undefined;
-  SeleccionarLista?: undefined;
+  CreateList?: undefined;
+  SelectList?: undefined;
   CheckList?: undefined;
+  CreateProduct?: undefined;
+  Products?: undefined;
 };
 
 export type StackProps = NativeStackScreenProps<StackParamList>;

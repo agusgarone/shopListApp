@@ -3,14 +3,29 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CreateList from "../screens/CreateList";
 import SelectList from "../screens/SelectList";
 import CheckList from "../screens/CheckList";
+import CreateProduct from "../screens/CreateProduct";
 import Home from "../screens/Home";
 import { DrawerProps } from "../types";
+import * as SQLite from "expo-sqlite";
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigation = (navigation: DrawerProps) => {
+interface IStackNavigation {
+  navigation: DrawerProps;
+  db: SQLite.WebSQLDatabase;
+}
+
+const StackNavigation = ({ navigation, db }: IStackNavigation) => {
   const HomeComponent = (props) => (
     <Home DrawerNavigation={navigation} StackNavigation={props} />
+  );
+
+  const CreateProductComponent = (props) => (
+    <CreateProduct
+      DrawerNavigation={navigation}
+      StackNavigation={props}
+      db={db}
+    />
   );
 
   return (
@@ -33,6 +48,11 @@ const StackNavigation = (navigation: DrawerProps) => {
       <Stack.Screen
         name="CheckList"
         component={CheckList}
+        options={{ title: "Check List" }}
+      />
+      <Stack.Screen
+        name="CreateProduct"
+        component={CreateProductComponent}
         options={{ title: "Check List" }}
       />
     </Stack.Navigator>
