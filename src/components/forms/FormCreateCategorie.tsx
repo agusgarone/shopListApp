@@ -5,11 +5,10 @@ import Input from "../StyledInput";
 import StyledButton from "../StyledButton";
 import theme from "../../theme";
 import * as SQLite from "expo-sqlite";
-import { createProduct } from "../../data/Controller";
+import { createCategoria } from "../../data/Controller";
 
 const initialValues = {
   nombre: "",
-  categoria: "",
 };
 
 const FORM_STATUS = {
@@ -22,9 +21,9 @@ interface IForm {
   db: SQLite.WebSQLDatabase;
 }
 
-const FormCreateProduct = ({ to, db }: IForm) => {
+const FormCreateCategorie = ({ to, db }: IForm) => {
   const handleFormikSubmit = async (
-    values: { nombre: any; categoria: any },
+    values: { nombre: any },
     actions: {
       setStatus: (arg0: string) => void;
       setSubmitting: (arg0: boolean) => void;
@@ -33,9 +32,9 @@ const FormCreateProduct = ({ to, db }: IForm) => {
     actions.setStatus(FORM_STATUS.idle);
     actions.setSubmitting(true);
     try {
-      const { nombre, categoria } = values;
-      console.log("values", nombre, categoria);
-      createProduct(db, [nombre, 1]);
+      const { nombre } = values;
+      console.log("values", nombre);
+      createCategoria(db, [nombre]);
       actions.setSubmitting(false);
       to();
     } catch (e) {
@@ -59,11 +58,6 @@ const FormCreateProduct = ({ to, db }: IForm) => {
                 label={"Nombre"}
                 name="nombre"
                 placeholder={"Ingrese el nombre"}
-              />
-              <FormikInputValue
-                label={"Categoria"}
-                name="categoria"
-                placeholder={"Ingrese la categoria"}
               />
             </View>
             <View>
@@ -119,4 +113,4 @@ const FormikInputValue = ({
   );
 };
 
-export default FormCreateProduct;
+export default FormCreateCategorie;

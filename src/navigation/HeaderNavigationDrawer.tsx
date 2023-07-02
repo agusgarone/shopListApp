@@ -5,6 +5,7 @@ import {
 } from "@react-navigation/drawer";
 import StackNavigation from "./StackNavigation";
 import Products from "../screens/Products";
+import Categories from "../screens/Categories";
 import HeaderDrawer from "../components/HeaderDrawer";
 import { Dimensions, StyleSheet } from "react-native";
 import theme from "../theme";
@@ -29,7 +30,18 @@ const HeaderNavigationDrawer = () => {
         "CREATE TABLE IF NOT EXISTS categorias (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)",
         null,
         () => {
-          console.log("TABLA categorias fue creada"), setExistDB(true);
+          console.log("TABLA categorias fue creada");
+        },
+        (transaction, error) => {
+          console.log("error", transaction, error);
+          return true;
+        }
+      );
+      tx.executeSql(
+        "CREATE TABLE IF NOT EXISTS productos (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, categoria INTEGER)",
+        null,
+        () => {
+          console.log("TABLA productos fue creada"), setExistDB(true);
         },
         (transaction, error) => {
           console.log("error", transaction, error);
@@ -58,6 +70,10 @@ const HeaderNavigationDrawer = () => {
     <Products db={db} navigation={props} />
   );
 
+  const CreateCategorieComponent = (props) => (
+    <Categories db={db} navigation={props} />
+  );
+
   const StackNavigationComponent = (props) => (
     <StackNavigation db={db} navigation={props} />
   );
@@ -79,6 +95,7 @@ const HeaderNavigationDrawer = () => {
     >
       <Drawer.Screen name="Dashboard" component={StackNavigationComponent} />
       <Drawer.Screen name="Products" component={CreateProductComponent} />
+      <Drawer.Screen name="Categories" component={CreateCategorieComponent} />
     </Drawer.Navigator>
   );
 };

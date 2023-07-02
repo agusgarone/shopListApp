@@ -22,6 +22,7 @@ const Input = ({
   const styles = StyleSheet.create({
     scrollView: {
       overflow: "hidden",
+      height: 80,
     },
     container: {
       ...style,
@@ -38,7 +39,7 @@ const Input = ({
     label: {
       color: theme.colors.tertiary,
       fontSize: theme.fontSize.body,
-      marginBottom: 8,
+      marginBottom: 4,
     },
     input: {
       flex: 1,

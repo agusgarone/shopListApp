@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import { DrawerProps, StackProps } from "../types";
 import StyledButton from "../components/StyledButton";
-import FormCreateProduct from "../components/forms/FormCreateProduct";
 import * as SQLite from "expo-sqlite";
+import FormCreateCategorie from "../components/forms/FormCreateCategorie";
 
-const CreateProduct = ({
+const CreateCategorie = ({
   StackNavigation,
   DrawerNavigation,
   db,
@@ -13,11 +13,11 @@ const CreateProduct = ({
   DrawerNavigation: DrawerProps;
   db: SQLite.WebSQLDatabase;
 }) => {
-  const redirect = () => DrawerNavigation.navigation.navigate("Products");
+  const redirect = () => DrawerNavigation.navigation.navigate("Categories");
   return (
     <View style={styles.screen}>
       <View style={styles.form}>
-        <FormCreateProduct to={redirect} db={db} />
+        <FormCreateCategorie to={redirect} db={db} />
       </View>
       <View style={styles.buttons}>
         <StyledButton
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateProduct;
+export default CreateCategorie;

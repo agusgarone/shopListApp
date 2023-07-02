@@ -13,23 +13,23 @@ import theme from "../theme";
 import ModalFilters from "../components/ModalFilters";
 import { useEffect, useState } from "react";
 import * as SQLite from "expo-sqlite";
-import { getAllProducts } from "../data/Controller";
+import { getAllCategories } from "../data/Controller";
 
-interface IProducts {
+interface ICategories {
   navigation: DrawerProps;
   db: SQLite.WebSQLDatabase;
 }
 
-const Products = ({ navigation, db }: IProducts) => {
+const Categories = ({ navigation, db }: ICategories) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [products, setProducts] = useState([]);
+  const [categorias, setCategorias] = useState([]);
   const openDrawer = () => {
     navigation.navigation.openDrawer();
   };
 
   useEffect(() => {
     navigation.navigation.addListener("focus", () => {
-      getAllProducts(db, setProducts);
+      getAllCategories(db, setCategorias);
     });
   }, []);
 
@@ -42,19 +42,9 @@ const Products = ({ navigation, db }: IProducts) => {
       <Header openDrawer={openDrawer} />
       <View style={styles.screen}>
         <View style={styles.content}>
-          <View style={styles.filter}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                setModalVisible(true);
-              }}
-            >
-              <Text style={styles.buttonText}>Filtro</Text>
-            </TouchableOpacity>
-          </View>
           <View style={styles.list}>
             <FlatList
-              data={products}
+              data={categorias}
               renderItem={({ item }) => {
                 return (
                   <View>
@@ -69,11 +59,11 @@ const Products = ({ navigation, db }: IProducts) => {
         </View>
         <View style={styles.buttons}>
           <StyledButton
-            children={"Crear producto"}
+            children={"Crear categoria"}
             color={"primary"}
             type="Navigate"
             navigation={navigation}
-            to="CreateProduct"
+            to="CreateCategorie"
           />
           <StyledButton
             children={"Listo"}
@@ -98,23 +88,7 @@ const styles = StyleSheet.create({
     flex: 3,
     display: "flex",
     justifyContent: "flex-end",
-  },
-  filter: {
-    flex: 1,
-    alignItems: "flex-end",
-    justifyContent: "center",
-    marginHorizontal: 20,
-  },
-  button: {
-    width: 100,
-    height: 35,
-    backgroundColor: theme.colors.tertiary,
-    borderRadius: 5,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonText: {
-    color: theme.colors.white,
+    marginTop: 20,
   },
   list: {
     flex: 10,
@@ -131,4 +105,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 });
-export default Products;
+export default Categories;
