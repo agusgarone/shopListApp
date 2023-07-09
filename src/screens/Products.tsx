@@ -24,9 +24,17 @@ interface IProducts {
 const Products = ({ navigation, db }: IProducts) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [products, setProducts] = useState([]);
+  const [refresh, setRefresh] = useState<boolean>(false);
   const openDrawer = () => {
     navigation.navigation.openDrawer();
   };
+
+  useEffect(() => {
+    if (refresh) {
+      getAllProducts(db, setProducts);
+      setRefresh(false);
+    }
+  }, [refresh]);
 
   useEffect(() => {
     navigation.navigation.addListener("focus", () => {
@@ -62,6 +70,8 @@ const Products = ({ navigation, db }: IProducts) => {
                     id={item.id}
                     value={item.name}
                     key={`${item.name}-${item.id}`}
+                    db={db}
+                    setRefresh={setRefresh}
                   />
                 );
               }}

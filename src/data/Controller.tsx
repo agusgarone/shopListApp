@@ -35,6 +35,21 @@ export const createProduct = (db: SQLite.WebSQLDatabase, params: any[]) => {
   });
 };
 
+export const deleteProduct = (db: SQLite.WebSQLDatabase, params: any[]) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "DELETE FROM productos WHERE id = ?",
+      params,
+      (txObj, resultSet) =>
+        console.log("value delete successfully", txObj, resultSet),
+      (txObj, error) => {
+        console.log("error", error);
+        return true;
+      }
+    );
+  });
+};
+
 export const getAllCategories = (
   db: SQLite.WebSQLDatabase,
   setCategories: React.Dispatch<React.SetStateAction<any[]>>
