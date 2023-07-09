@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
-import theme from "../theme";
+import theme from "../common/theme";
 import FormFilterProducts from "./forms/FormFilterProducts";
 
 const ModalFilters = ({ show, onDismiss }) => {

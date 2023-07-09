@@ -6,6 +6,7 @@ import * as SQLite from "expo-sqlite";
 import { createProduct } from "../../data/Controller";
 import { FormikSelectValue } from "./Formik/SelectInput";
 import { FormikInputValue } from "./Formik/InputText";
+import { IFormCreateProduct } from "../../common/types";
 
 const initialValues = {
   nombre: "",
@@ -17,13 +18,7 @@ const FORM_STATUS = {
   wrongCredentials: "wrongCredentials",
 };
 
-interface IForm {
-  to: () => void;
-  db: SQLite.WebSQLDatabase;
-  dataRender?: any[];
-}
-
-const FormCreateProduct = ({ to, db, dataRender }: IForm) => {
+const FormCreateProduct = ({ to, db, dataRender }: IFormCreateProduct) => {
   const [selectedValue, setSelectedValue] = useState<string>();
   const handleFormikSubmit = async (
     values: { nombre: any; categoria: any },

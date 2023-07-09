@@ -4,7 +4,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import theme from "../theme";
+import theme from "../common/theme";
 
 const HeaderDrawer = (props) => {
   return (

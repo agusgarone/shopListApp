@@ -8,7 +8,7 @@ import Products from "../screens/Products";
 import Categories from "../screens/Categories";
 import HeaderDrawer from "../components/HeaderDrawer";
 import { Dimensions, StyleSheet } from "react-native";
-import theme from "../theme";
+import theme from "../common/theme";
 
 import * as SQLite from "expo-sqlite";
 import * as Sharing from "expo-sharing";

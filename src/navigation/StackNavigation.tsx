@@ -5,16 +5,10 @@ import SelectList from "../screens/SelectList";
 import CheckList from "../screens/CheckList";
 import CreateProduct from "../screens/CreateProduct";
 import Home from "../screens/Home";
-import { DrawerProps } from "../types";
-import * as SQLite from "expo-sqlite";
+import { IStackNavigation } from "../common/types";
 import CreateCategorie from "../screens/CreateCategorie";
 
 const Stack = createNativeStackNavigator();
-
-interface IStackNavigation {
-  navigation: DrawerProps;
-  db: SQLite.WebSQLDatabase;
-}
 
 const StackNavigation = ({ navigation, db }: IStackNavigation) => {
   const HomeComponent = (props) => (
@@ -67,7 +61,7 @@ const StackNavigation = ({ navigation, db }: IStackNavigation) => {
       <Stack.Screen
         name="CreateCategorie"
         component={CreateCategorieComponent}
-        options={{ title: "Create Categorie" }}
+        options={{ title: "Create Category", headerShown: false }}
       />
     </Stack.Navigator>
   );

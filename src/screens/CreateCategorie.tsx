@@ -1,23 +1,23 @@
-import { View, Text, StyleSheet } from "react-native";
-import { DrawerProps, StackProps } from "../types";
+import { View, StyleSheet } from "react-native";
+import { ICreateScreen } from "../common/types";
 import StyledButton from "../components/StyledButton";
-import * as SQLite from "expo-sqlite";
 import FormCreateCategorie from "../components/forms/FormCreateCategorie";
+import Header from "../components/Header";
+import { openDrawer, redirect } from "../common/utils";
 
 const CreateCategorie = ({
   StackNavigation,
   DrawerNavigation,
   db,
-}: {
-  StackNavigation: StackProps;
-  DrawerNavigation: DrawerProps;
-  db: SQLite.WebSQLDatabase;
-}) => {
-  const redirect = () => DrawerNavigation.navigation.navigate("Categories");
+}: ICreateScreen) => {
   return (
     <View style={styles.screen}>
+      <Header openDrawer={() => openDrawer(DrawerNavigation)} />
       <View style={styles.form}>
-        <FormCreateCategorie to={redirect} db={db} />
+        <FormCreateCategorie
+          to={() => redirect({ navProps: DrawerNavigation, to: "Categories" })}
+          db={db}
+        />
       </View>
       <View style={styles.buttons}>
         <StyledButton

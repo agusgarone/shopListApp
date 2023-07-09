@@ -70,13 +70,28 @@ export const getAllCategories = (
   });
 };
 
-export const createCategoria = (db: SQLite.WebSQLDatabase, params: any[]) => {
+export const createCategory = (db: SQLite.WebSQLDatabase, params: any[]) => {
   db.transaction((tx) => {
     tx.executeSql(
       "INSERT INTO categorias (name) values (?)",
       params,
       (txObj, resultSet) =>
         console.log("value created success", txObj, resultSet),
+      (txObj, error) => {
+        console.log("error", error);
+        return true;
+      }
+    );
+  });
+};
+
+export const deleteCategory = (db: SQLite.WebSQLDatabase, params: any[]) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "DELETE FROM categorias WHERE id = ?",
+      params,
+      (txObj, resultSet) =>
+        console.log("value delete successfully", txObj, resultSet),
       (txObj, error) => {
         console.log("error", error);
         return true;

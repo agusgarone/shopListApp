@@ -1,23 +1,37 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import theme from "../theme";
+import theme from "../common/theme";
 import * as SQLite from "expo-sqlite";
-import { deleteProduct } from "../data/Controller";
+import { deleteCategory, deleteProduct } from "../data/Controller";
 
 interface IItemRender {
   value: string;
   id: string;
   db: SQLite.WebSQLDatabase;
   setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  screen: string;
 }
 
-const ItemRender = ({ value, id, db, setRefresh }: IItemRender) => {
+const ItemRender = ({ value, id, db, setRefresh, screen }: IItemRender) => {
+  const onPress = () => {
+    switch (screen) {
+      case "categorias":
+        deleteCategory(db, [id]);
+        break;
+      case "productos":
+        deleteProduct(db, [id]);
+        break;
+      default:
+        return null;
+    }
+  };
+
   return (
     <View style={styles.box}>
       <Text>{value}</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          deleteProduct(db, [id]);
+          onPress();
           setRefresh(true);
         }}
       >

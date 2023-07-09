@@ -2,7 +2,7 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import Modal from "react-native-modal";
 import StyledButton from "./StyledButton";
 import Lists from "../data/Lists";
-import theme from "../theme";
+import theme from "../common/theme";
 
 const ModalContent = ({ closeModal }) => {
   return (

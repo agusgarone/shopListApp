@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { View } from "react-native";
 import StyledButton from "../components/StyledButton";
-import theme from "../theme";
-import { StackProps } from "../types";
+import theme from "../common/theme";
+import { StackProps } from "../common/types";
 
 const CheckList = (navigation: StackProps) => {
   return (

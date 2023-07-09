@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Formik, useField } from "formik";
 import Input from "../StyledInput";
 import StyledButton from "../StyledButton";
-import theme from "../../theme";
+import theme from "../../common/theme";
 import { FormikInputValue } from "./Formik/InputText";
 import { FormikSelectValue } from "./Formik/SelectInput";
 

@@ -4,7 +4,7 @@ import StyledButton from "../components/StyledButton";
 import ProductItem from "../components/ProductItem";
 import { useState } from "react";
 import ModalSeleccionarProducto from "../components/ModalSelectProduct";
-import { StackProps } from "../types";
+import { StackProps } from "../common/types";
 
 const CrearLista = (navigation: StackProps) => {
   const [modalVisible, setModalVisible] = useState(false);

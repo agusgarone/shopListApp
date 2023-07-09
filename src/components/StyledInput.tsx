@@ -1,5 +1,5 @@
 import { useState } from "react";
-import theme from "../theme";
+import theme from "../common/theme";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 const Input = ({

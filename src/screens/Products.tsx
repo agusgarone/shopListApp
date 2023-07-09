@@ -6,28 +6,20 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { DrawerProps } from "../types";
+import { IProductsScreen } from "../common/types";
 import Header from "../components/Header";
 import StyledButton from "../components/StyledButton";
-import theme from "../theme";
+import theme from "../common/theme";
 import ModalFilters from "../components/ModalFilters";
 import { useEffect, useState } from "react";
-import * as SQLite from "expo-sqlite";
 import { getAllProducts } from "../data/Controller";
 import ItemRender from "../components/ItemRender";
+import { openDrawer } from "../common/utils";
 
-interface IProducts {
-  navigation: DrawerProps;
-  db: SQLite.WebSQLDatabase;
-}
-
-const Products = ({ navigation, db }: IProducts) => {
+const Products = ({ navigation, db }: IProductsScreen) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [products, setProducts] = useState([]);
   const [refresh, setRefresh] = useState<boolean>(false);
-  const openDrawer = () => {
-    navigation.navigation.openDrawer();
-  };
 
   useEffect(() => {
     if (refresh) {
@@ -48,7 +40,7 @@ const Products = ({ navigation, db }: IProducts) => {
         show={modalVisible}
         onDismiss={() => setModalVisible(false)}
       />
-      <Header openDrawer={openDrawer} />
+      <Header openDrawer={() => openDrawer(navigation)} />
       <View style={styles.screen}>
         <View style={styles.content}>
           <View style={styles.filter}>
@@ -72,6 +64,7 @@ const Products = ({ navigation, db }: IProducts) => {
                     key={`${item.name}-${item.id}`}
                     db={db}
                     setRefresh={setRefresh}
+                    screen={"productos"}
                   />
                 );
               }}

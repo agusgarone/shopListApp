@@ -1,12 +1,10 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { Formik, useField } from "formik";
-import Input from "../StyledInput";
+import { View } from "react-native";
+import { Formik } from "formik";
 import StyledButton from "../StyledButton";
-import theme from "../../theme";
-import * as SQLite from "expo-sqlite";
-import { createCategoria } from "../../data/Controller";
+import { createCategory } from "../../data/Controller";
 import { FormikInputValue } from "./Formik/InputText";
+import { IFormCreateCategorie } from "../../common/types";
 
 const initialValues = {
   nombre: "",
@@ -17,12 +15,7 @@ const FORM_STATUS = {
   wrongCredentials: "wrongCredentials",
 };
 
-interface IForm {
-  to: () => void;
-  db: SQLite.WebSQLDatabase;
-}
-
-const FormCreateCategorie = ({ to, db }: IForm) => {
+const FormCreateCategorie = ({ to, db }: IFormCreateCategorie) => {
   const handleFormikSubmit = async (
     values: { nombre: any },
     actions: {
@@ -35,7 +28,7 @@ const FormCreateCategorie = ({ to, db }: IForm) => {
     try {
       const { nombre } = values;
       console.log("values", nombre);
-      createCategoria(db, [nombre]);
+      createCategory(db, [nombre]);
       actions.setSubmitting(false);
       to();
     } catch (e) {

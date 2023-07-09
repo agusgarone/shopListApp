@@ -1,9 +1,14 @@
 import React from "react";
 import { View, StyleSheet, TouchableHighlight, Text } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import theme from "../theme";
+import theme from "../common/theme";
+import { DrawerProps } from "../common/types";
 
-const Header = ({ openDrawer }: any) => {
+interface IHeader {
+  openDrawer: () => void;
+}
+
+const Header = ({ openDrawer }: IHeader) => {
   return (
     <View style={styles.body}>
       <TouchableHighlight style={styles.imgContent} onPress={openDrawer}>

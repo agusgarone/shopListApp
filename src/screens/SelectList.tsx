@@ -7,22 +7,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Lists from "../data/Lists";
-import theme from "../theme";
+import theme from "../common/theme";
 import ModalLista from "../components/ModalList";
+import { IItem, IListItem } from "../common/types";
 
-const Item = ({ list, onPress }) => (
+const Item = ({ list, onPress }: IItem) => (
   <TouchableOpacity style={styles.item} onPress={onPress}>
-    <Text style={styles.title}>{list?.item?.name}</Text>
-    <Text
-      style={styles.subText}
-    >{`${list?.item?.products?.length} productos`}</Text>
-    <Text style={styles.subText}>{list?.item?.created}</Text>
+    <Text style={styles.title}>{list?.name}</Text>
+    <Text style={styles.subText}>{`${list?.products?.length} productos`}</Text>
+    <Text style={styles.subText}>{list?.created}</Text>
   </TouchableOpacity>
 );
 
-const ListItem = ({ list, setModalVisible }) => {
-  return <Item list={list} onPress={() => setModalVisible(true)} />;
-};
+const ListItem = ({ list, setModalVisible }: IListItem) => (
+  <Item list={list} onPress={() => setModalVisible(true)} />
+);
 
 const SeleccionarLista = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -37,10 +36,10 @@ const SeleccionarLista = () => {
         overScrollMode="never"
         style={styles.list}
         data={Lists}
-        renderItem={(list) => (
-          <ListItem list={list} setModalVisible={setModalVisible} />
+        renderItem={({ index, item, separators }) => (
+          <ListItem list={item} setModalVisible={setModalVisible} />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );

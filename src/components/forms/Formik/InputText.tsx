@@ -2,7 +2,7 @@ import React from "react";
 import { useField } from "formik";
 import { View, Text } from "react-native";
 import Input from "../../StyledInput";
-import theme from "../../../theme";
+import theme from "../../../common/theme";
 
 export const FormikInputValue = ({
   name,

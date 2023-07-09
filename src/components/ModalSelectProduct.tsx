@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
-import theme from "../theme";
+import theme from "../common/theme";
 import FormSelectProduct from "./forms/FormSelectProduct";
 
 const ModalSeleccionarProducto = ({ show, onDismiss }) => {

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import theme from "../theme";
+import theme from "../common/theme";
 
 const styles = StyleSheet.create({
   button: {

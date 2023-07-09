@@ -1,21 +1,16 @@
-import { View, Text, StyleSheet } from "react-native";
-import { DrawerProps, StackProps } from "../types";
+import { View, StyleSheet } from "react-native";
+import { ICreateScreen } from "../common/types";
 import StyledButton from "../components/StyledButton";
 import FormCreateProduct from "../components/forms/FormCreateProduct";
-import * as SQLite from "expo-sqlite";
 import { useEffect, useState } from "react";
 import { getAllCategories } from "../data/Controller";
+import { redirect } from "../common/utils";
 
 const CreateProduct = ({
   StackNavigation,
   DrawerNavigation,
   db,
-}: {
-  StackNavigation: StackProps;
-  DrawerNavigation: DrawerProps;
-  db: SQLite.WebSQLDatabase;
-}) => {
-  const redirect = () => DrawerNavigation.navigation.navigate("Products");
+}: ICreateScreen) => {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
@@ -27,7 +22,11 @@ const CreateProduct = ({
   return (
     <View style={styles.screen}>
       <View style={styles.form}>
-        <FormCreateProduct to={redirect} db={db} dataRender={categorias} />
+        <FormCreateProduct
+          to={() => redirect({ navProps: DrawerNavigation, to: "Products" })}
+          db={db}
+          dataRender={categorias}
+        />
       </View>
       <View style={styles.buttons}>
         <StyledButton
