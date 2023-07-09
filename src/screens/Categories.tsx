@@ -14,6 +14,7 @@ import ModalFilters from "../components/ModalFilters";
 import { useEffect, useState } from "react";
 import * as SQLite from "expo-sqlite";
 import { getAllCategories } from "../data/Controller";
+import ItemRender from "../components/ItemRender";
 
 interface ICategories {
   navigation: DrawerProps;
@@ -47,9 +48,11 @@ const Categories = ({ navigation, db }: ICategories) => {
               data={categorias}
               renderItem={({ item }) => {
                 return (
-                  <View>
-                    <Text>{item.name}</Text>
-                  </View>
+                  <ItemRender
+                    id={item.id}
+                    value={item.name}
+                    key={`${item.name}-${item.id}`}
+                  />
                 );
               }}
               overScrollMode="never"
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: theme.colors.darkWhite,
     marginHorizontal: 20,
+    borderRadius: 8,
   },
   scrollView: {
     height: "100%",

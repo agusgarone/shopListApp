@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Formik, useField } from "formik";
 import Input from "../StyledInput";
 import StyledButton from "../StyledButton";
 import theme from "../../theme";
+import { FormikInputValue } from "./Formik/InputText";
+import { FormikSelectValue } from "./Formik/SelectInput";
 
 const initialValues = {
   nombreProducto: "",
@@ -17,6 +19,7 @@ const FORM_STATUS = {
 };
 
 const FormFilterProducts = ({ onDismiss }: { onDismiss: () => void }) => {
+  const [selectedValue, setSelectedValue] = useState<string>();
   const handleFormikSubmit = async (
     values: { nombreProducto: any; categorias: any; listasCreadas: any },
     actions: {
@@ -47,10 +50,11 @@ const FormFilterProducts = ({ onDismiss }: { onDismiss: () => void }) => {
                 name="nombreProducto"
                 placeholder={"Ingrese el nombre"}
               />
-              <FormikInputValue
-                label={"Categorias"}
+              <FormikSelectValue
                 name="categorias"
-                placeholder={"Ingrese categorias"}
+                label="Categorias"
+                value={selectedValue}
+                setValue={setSelectedValue}
               />
               <FormikInputValue
                 label={"Por listas creadas"}
@@ -71,43 +75,6 @@ const FormFilterProducts = ({ onDismiss }: { onDismiss: () => void }) => {
         );
       }}
     </Formik>
-  );
-};
-
-const FormikInputValue = ({
-  name,
-  label,
-  placeholder,
-}: {
-  name: string;
-  label?: string;
-  placeholder?: string;
-}) => {
-  const [field, meta, helpers] = useField(name);
-
-  return (
-    <View style={{ height: 80, marginBottom: 5 }}>
-      <Input
-        label={label}
-        placeholder={placeholder}
-        error={meta.error}
-        value={field.value}
-        onChangeText={(value: any) => helpers.setValue(value)}
-        style={{ marginBottom: 15 }}
-      />
-      {meta.error && (
-        <View
-          style={{
-            flexDirection: "row",
-            width: "100%",
-          }}
-        >
-          <Text style={{ color: "red", fontSize: theme.fontSize.s }}>
-            {meta.error}
-          </Text>
-        </View>
-      )}
-    </View>
   );
 };
 

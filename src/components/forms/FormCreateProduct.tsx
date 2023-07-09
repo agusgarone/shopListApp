@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { Formik, useField } from "formik";
-import Input from "../StyledInput";
+import React, { useState } from "react";
+import { View } from "react-native";
+import { Formik } from "formik";
 import StyledButton from "../StyledButton";
-import theme from "../../theme";
 import * as SQLite from "expo-sqlite";
 import { createProduct } from "../../data/Controller";
+import { FormikSelectValue } from "./Formik/SelectInput";
+import { FormikInputValue } from "./Formik/InputText";
 
 const initialValues = {
   nombre: "",
@@ -20,9 +20,11 @@ const FORM_STATUS = {
 interface IForm {
   to: () => void;
   db: SQLite.WebSQLDatabase;
+  dataRender?: any[];
 }
 
-const FormCreateProduct = ({ to, db }: IForm) => {
+const FormCreateProduct = ({ to, db, dataRender }: IForm) => {
+  const [selectedValue, setSelectedValue] = useState<string>();
   const handleFormikSubmit = async (
     values: { nombre: any; categoria: any },
     actions: {
@@ -35,7 +37,7 @@ const FormCreateProduct = ({ to, db }: IForm) => {
     try {
       const { nombre, categoria } = values;
       console.log("values", nombre, categoria);
-      createProduct(db, [nombre, 1]);
+      createProduct(db, [nombre, categoria]);
       actions.setSubmitting(false);
       to();
     } catch (e) {
@@ -56,14 +58,16 @@ const FormCreateProduct = ({ to, db }: IForm) => {
           >
             <View style={{ paddingTop: 40 }}>
               <FormikInputValue
-                label={"Nombre"}
                 name="nombre"
+                label={"Nombre"}
                 placeholder={"Ingrese el nombre"}
               />
-              <FormikInputValue
-                label={"Categoria"}
+              <FormikSelectValue
                 name="categoria"
-                placeholder={"Ingrese la categoria"}
+                label="Categoria"
+                value={selectedValue}
+                setValue={setSelectedValue}
+                dataRender={dataRender}
               />
             </View>
             <View>
@@ -79,43 +83,6 @@ const FormCreateProduct = ({ to, db }: IForm) => {
         );
       }}
     </Formik>
-  );
-};
-
-const FormikInputValue = ({
-  name,
-  label,
-  placeholder,
-}: {
-  name: string;
-  label?: string;
-  placeholder?: string;
-}) => {
-  const [field, meta, helpers] = useField(name);
-
-  return (
-    <View style={{ height: 80, marginBottom: 5 }}>
-      <Input
-        label={label}
-        placeholder={placeholder}
-        error={meta.error}
-        value={field.value}
-        onChangeText={(value: any) => helpers.setValue(value)}
-        style={{ marginBottom: 15 }}
-      />
-      {meta.error && (
-        <View
-          style={{
-            flexDirection: "row",
-            width: "100%",
-          }}
-        >
-          <Text style={{ color: "red", fontSize: theme.fontSize.s }}>
-            {meta.error}
-          </Text>
-        </View>
-      )}
-    </View>
   );
 };
 
